@@ -1,3 +1,4 @@
+//Action creator that encapsulate the logic of the application
 import C from './constants'
 
 export function addDay(resort, date, powder=false, backcountry=false) {
@@ -47,22 +48,23 @@ export const clearSuggestions = () =>
 		type: C.CLEAR_SUGGESTIONS
 	})
 
-// export const randomGoals = () = (dispatch, getState) => {
+	//thunk (basically a function but returns another function and not an object directly)
+export const randomGoals = () =>  (dispatch, getState) => {
 
-// 	if (!getState.resortNames.fetching) {
+	if (!getState.resortNames.fetching) {
 
-// 		dispatch({
-// 			type: C.FETCH_RESORT_NAMES
-// 		})
+		dispatch({
+			type: C.FETCH_RESORT_NAMES
+		})
 
-// 		setTimeout(() => {
+		setTimeout(() => {
 
-// 			dispatch({
-// 				type: C.CANCEL_FETCHING
-// 			})
+			dispatch({
+				type: C.CANCEL_FETCHING
+			})
 
-// 		}, 1500)
+		}, 1500)
 
-// 	}
+	}
 
-// }
+}

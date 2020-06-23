@@ -1,17 +1,22 @@
+//reducers are pure functions designed to manage specific parts of your state object
 import C from '../constants'
 import { combineReducers } from 'redux'
 
+//it's a function that will take a given state in an action and produce a new state
 export const goal = (state=10, action) => 
 	(action.type === C.SET_GOAL) ? 
 		 parseInt(action.payload) :
 		 state
 
+     // object reducer
 export const skiDay = (state=null, action) => 
   (action.type === C.ADD_DAY) ?
   	action.payload :
   	state
 
+    // array reducer
 export const errors = (state=[], action) => {
+  // add switch statement to check the action type
   switch(action.type) {
     case C.ADD_ERROR :
     	return [
@@ -25,6 +30,7 @@ export const errors = (state=[], action) => {
   }
 }
 
+// manage the list of ski days under all ski days
 export const allSkiDays = (state=[], action) => {
 
   switch(action.type) {
@@ -85,6 +91,7 @@ export const suggestions = (state=[], action) => {
 
 }
 
+//combine reducers (Redux method), when combining must be in the same shape as the state
 export default combineReducers({
   allSkiDays,
   goal,
